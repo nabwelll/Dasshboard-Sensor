@@ -278,32 +278,34 @@ export function HomePage() {
       {/* Quick Stats */}
       <Card className="p-6" gradient>
         <h2 className="text-lg font-semibold text-white mb-4">Statistik Cepat (24 Jam Terakhir)</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <p className="text-slate-400 text-sm mb-1">Suhu Rata-rata</p>
-            <p className="text-2xl font-bold text-orange-400">
-              {(sensorData.reduce((a, b) => a + b.temperature, 0) / sensorData.length).toFixed(1)}°C
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-slate-400 text-sm mb-1">Kelembaban Rata-rata</p>
-            <p className="text-2xl font-bold text-blue-400">
-              {(sensorData.reduce((a, b) => a + b.humidity, 0) / sensorData.length).toFixed(1)}%
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-slate-400 text-sm mb-1">Tekanan Rata-rata</p>
-            <p className="text-2xl font-bold text-purple-400">
-              {(sensorData.reduce((a, b) => a + b.pressure, 0) / sensorData.length).toFixed(1)} hPa
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-slate-400 text-sm mb-1">Cahaya Rata-rata</p>
-            <p className="text-2xl font-bold text-cyan-400">
-              {(sensorData.reduce((a, b) => a + b.light, 0) / sensorData.length).toFixed(0)} lux
-            </p>
-          </div>
-        </div>
+        {(() => {
+          const dataLength = sensorData.length || 1
+          const avgTemp = (sensorData.reduce((a, b) => a + b.temperature, 0) / dataLength).toFixed(1)
+          const avgHumidity = (sensorData.reduce((a, b) => a + b.humidity, 0) / dataLength).toFixed(1)
+          const avgPressure = (sensorData.reduce((a, b) => a + b.pressure, 0) / dataLength).toFixed(1)
+          const avgLight = (sensorData.reduce((a, b) => a + b.light, 0) / dataLength).toFixed(0)
+          
+          return (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <p className="text-slate-400 text-sm mb-1">Suhu Rata-rata</p>
+                <p className="text-2xl font-bold text-orange-400">{avgTemp}°C</p>
+              </div>
+              <div className="text-center">
+                <p className="text-slate-400 text-sm mb-1">Kelembaban Rata-rata</p>
+                <p className="text-2xl font-bold text-blue-400">{avgHumidity}%</p>
+              </div>
+              <div className="text-center">
+                <p className="text-slate-400 text-sm mb-1">Tekanan Rata-rata</p>
+                <p className="text-2xl font-bold text-purple-400">{avgPressure} hPa</p>
+              </div>
+              <div className="text-center">
+                <p className="text-slate-400 text-sm mb-1">Cahaya Rata-rata</p>
+                <p className="text-2xl font-bold text-cyan-400">{avgLight} lux</p>
+              </div>
+            </div>
+          )
+        })()}
       </Card>
     </div>
   )

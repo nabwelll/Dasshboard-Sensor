@@ -378,9 +378,9 @@ export function DataLogPage() {
           <div>
             <p className="text-slate-400 text-sm mb-1">Rentang Waktu</p>
             <p className="text-sm font-medium text-purple-400">
-              {data.length > 0 ? (
+              {data.length > 0 && data[data.length - 1] && data[0] ? (
                 <>
-                  {new Date(data[data.length - 1]?.timestamp).toLocaleDateString('id-ID')} - {new Date(data[0]?.timestamp).toLocaleDateString('id-ID')}
+                  {new Date(data[data.length - 1].timestamp).toLocaleDateString('id-ID')} - {new Date(data[0].timestamp).toLocaleDateString('id-ID')}
                 </>
               ) : '-'}
             </p>

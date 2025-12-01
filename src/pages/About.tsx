@@ -10,7 +10,8 @@ import {
   Shield,
   Smartphone,
   Zap,
-  CheckCircle
+  CheckCircle,
+  Activity
 } from 'lucide-react'
 import { Card } from '../components/Card'
 
@@ -64,8 +65,6 @@ const sensors = [
   { name: 'Tekanan', unit: 'hPa', range: '300 ~ 1100', icon: '🌀' },
   { name: 'Cahaya', unit: 'lux', range: '0 ~ 10000', icon: '☀️' }
 ]
-
-import { Activity } from 'lucide-react'
 
 export function AboutPage() {
   return (
